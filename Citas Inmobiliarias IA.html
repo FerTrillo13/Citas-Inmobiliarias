@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita - Inmobiliaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label, select, input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Agendar una Cita</h2>
+        <label for="date">Fecha:</label>
+        <input type="date" id="date" required>
+        
+        <label for="time">Hora:</label>
+        <select id="time" required></select>
+        
+        <label for="type">Tipo de Cita:</label>
+        <select id="type">
+            <option value="Visita a Propiedad">Visita a Propiedad</option>
+            <option value="Asesoría Inmobiliaria">Asesoría Inmobiliaria</option>
+        </select>
+        
+        <button onclick="scheduleAppointment()">Confirmar Cita</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let timeSelect = document.getElementById("time");
+            let hours = ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"];
+            hours.forEach(hour => {
+                let option = document.createElement("option");
+                option.value = hour;
+                option.textContent = hour;
+                timeSelect.appendChild(option);
+            });
+        });
+
+        function scheduleAppointment() {
+            let date = document.getElementById("date").value;
+            let time = document.getElementById("time").value;
+            let type = document.getElementById("type").value;
+            
+            if (!date || !time) {
+                alert("Por favor, seleccione una fecha y hora.");
+                return;
+            }
+            
+            alert(`Cita confirmada:\nFecha: ${date}\nHora: ${time}\nTipo: ${type}`);
+        }
+    </script>
+</body>
+</html>
